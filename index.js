@@ -329,3 +329,23 @@ function ratingSortInAsc(hotelObj1, hotelObj2){
     app.get("/hotels", (req, res)=>{ 
       res.send(hotels);
     })
+
+    app.get('/discount', (req, res) => {
+      let price = parseFloat(req.query.price);
+      let discount = parseFloat(req.query.discount);
+      let result = price - price * (discount / 100);
+      res.send('The discounted price is ' + result.toString());
+    });
+    
+    app.get('/profile/:id', (req, res) => {
+      const userId = req.params.id;
+      res.send("User Profile ID: "+userId);
+    });
+    
+    app.get('/fuel-cost', (req, res) => {
+      const distance = parseFloat(req.query.distance);
+      const fuelEfficiency = parseFloat(req.query.fuelEfficiency);
+      const fuelPrice = parseFloat(req.query.fuelPrice);
+      let result = (distance/fuelEfficiency)*fuelPrice;
+      res.send("The total fuel cost for the trip is "+result);
+    });
